@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Channels2Archive", "Channels2Archive.csproj", "{393077C3-5E98-4222-B7E3-722BE8D1A0DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{393077C3-5E98-4222-B7E3-722BE8D1A0DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393077C3-5E98-4222-B7E3-722BE8D1A0DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393077C3-5E98-4222-B7E3-722BE8D1A0DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393077C3-5E98-4222-B7E3-722BE8D1A0DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E31BE668-92AD-4DC2-8BAE-81ABF80A3ABE}
+	EndGlobalSection
+EndGlobal
