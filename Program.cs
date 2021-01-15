@@ -12,7 +12,8 @@ namespace Channels2Archive
             Dictionary<int, Tuple<string, string>> channels = new Dictionary<int, Tuple<string, string>>();
             int num = 0;
             List<string> catogories = new List<string>();
-            string target = "C:/Users/Kompot/Desktop/Old Shit/Test/";
+            Console.WriteLine("Input target directory: ");
+            string target = Console.ReadLine();
 
             string[] html = Directory.GetFiles(target , "*.html");
             foreach (string pathName in html)
