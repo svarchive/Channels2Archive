@@ -27,7 +27,6 @@ namespace Channels2Archive
                 num += 1;
                 if (!catogories.Contains(catogory)) catogories.Add(catogory);
                 File.Move(pathName, $"{target}{name}.html");
-                Console.WriteLine(name + " " + catogory);
             }
 
             string final = "";
@@ -38,7 +37,7 @@ namespace Channels2Archive
                 {
                     if (channel.Value.Item2 == catogory)
                     {
-                        final += $"\n\n### [{channel.Value.Item1}](svarchive.github.io{target.Split("svarchive.github.io")[1].Replace(@"\","/")}{channel.Value.Item1})";
+                        final += $"\n\n### [{channel.Value.Item1}](svarchive.github.io{target.Split("https://svarchive.github.io")[1].Replace(@"\","/")}{channel.Value.Item1})";
                         channels.Remove(channel.Key);
                     }
                 }
