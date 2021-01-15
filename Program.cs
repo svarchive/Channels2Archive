@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Channels2Archive
 {
@@ -14,7 +15,6 @@ namespace Channels2Archive
             List<string> catogories = new List<string>();
             Console.WriteLine("Input target directory: ");
             string target = Console.ReadLine();
-
             string[] html = Directory.GetFiles(target , "*.html");
             foreach (string pathName in html)
             {
@@ -38,7 +38,7 @@ namespace Channels2Archive
                 {
                     if (channel.Value.Item2 == catogory)
                     {
-                        final += $"\n\n### {channel.Value.Item1}";
+                        final += $"\n\n### [{channel.Value.Item1}](svarchive.github.io{target.Split("svarchive.github.io")[1].Replace(@"\","/")}{channel.Value.Item1})";
                         channels.Remove(channel.Key);
                     }
                 }
