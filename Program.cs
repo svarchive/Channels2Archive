@@ -10,40 +10,52 @@ namespace Channels2Archive
     {
         static void Main(string[] args)
         {
-            Dictionary<int, Tuple<string, string>> channels = new Dictionary<int, Tuple<string, string>>();
-            int num = 0;
-            List<string> catogories = new List<string>();
-            Console.WriteLine("Input target directory: ");
-            string target = Console.ReadLine();
-            string[] html = Directory.GetFiles(target , "*.html");
-            foreach (string pathName in html)
+            while (true)
             {
-                string full = pathName.Split('/').Last();
-                string[] split = full.Split('[')[0].Split('-');
-                var catogory = split[1].Trim();
-                var nameList = split.Skip(2);
-                string name = string.Join('-', nameList).Replace(" ", string.Empty);
-                channels.Add(num, Tuple.Create(name, catogory));
-                num += 1;
-                if (!catogories.Contains(catogory)) catogories.Add(catogory);
-                File.Move(pathName, $"{target}{name}.html");
-            }
-
-            string final = "";
-            foreach (string catogory in catogories)
-            {
-                final += $"\n## {catogory}";
-                foreach (var channel in channels)
+                Console.WriteLine("Input target directory: ");
+                string target = Console.ReadLine();
+                Dictionary<int, Tuple<string, string>> channels = new Dictionary<int, Tuple<string, string>>();
+                int num = 0;
+                List<string> catogories = new List<string>();
+                string[] html = Directory.GetFiles(target, "*.html");
+                foreach (string pathName in html)
                 {
-                    if (channel.Value.Item2 == catogory)
+                    string full = pathName.Split('/').Last();
+                    string[] split = full.Split('[')[0].Split('-');
+                    var catogory = split[1].Trim();
+                    var nameList = split.Skip(2);
+                    string name = string.Join('-', nameList).Replace(" ", string.Empty);
+                    bool isname = false;
+                    foreach (var channel in channels) if (channel.Value.Item1 == name) isname = true;
+                    if (isname != true) File.Move(pathName, $"{target}{name}.html");
+                    else
                     {
-                        final += $"\n\n### [{channel.Value.Item1}](svarchive.github.io{target.Split("https://svarchive.github.io")[1].Replace(@"\","/")}{channel.Value.Item1})";
-                        channels.Remove(channel.Key);
+                        name = $"{catogory} {name}";
+                        File.Move(pathName, $"{target}{name}.html");
+                    }
+                    channels.Add(num, Tuple.Create(name, catogory));
+                    num += 1;
+                    if (!catogories.Contains(catogory)) catogories.Add(catogory);
+                }
+
+                string final = "";
+                foreach (string catogory in catogories)
+                {
+                    final += $"\n## {catogory}";
+                    foreach (var channel in channels)
+                    {
+                        if (channel.Value.Item2 == catogory)
+                        {
+                            final += $"\n\n### [{channel.Value.Item1}](https://svarchive.github.io{target.Split("svarchive.github.io")[1].Replace(@"\", "/")}{channel.Value.Item1})";
+                            channels.Remove(channel.Key);
+                        }
                     }
                 }
-            }
 
-            File.WriteAllText(target + "server.md", final);
+                File.WriteAllText(target + "server.md", final);
+                channels.Clear();
+                catogories.Clear();
+            }
         }
     }
 }
